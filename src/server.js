@@ -19,6 +19,7 @@ app.use(express.static('public'));
 
 // Define a route to handle file uploads and make predictions using Custom Vision model API
 app.post('/upload', upload.single('file'), async (req, res) => {
+  console.log("in here");
     try {
         if (!req.file) {
             return res.status(400).send('No files were uploaded.');

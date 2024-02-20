@@ -1,16 +1,24 @@
 <!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Logo Recognition</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <h1>Upload an Image for Logo Recognition</h1>
   <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
     <input type="file" name="file" id="fileInput">
-    <button type="submit">Upload</button>
-  </form>
+    <button type="submit">Upload</button> 
+  </form><br>
+
+  <div id="result">Result will be displayed here</div>
+
+  <script src="script.js"></script>
 </body>
+
 </html>
