@@ -6,7 +6,6 @@ const app = express();
 const port = 3000;
 
 // Set up Multer for handling file uploads
-// Set up Multer for handling file uploads
 const upload = multer({ 
     preservePath: true,
     limits: {
@@ -17,8 +16,7 @@ const upload = multer({
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
-// Define a route to handle file uploads
-// Make predictions using Custom Vision model API
+// Define a route to handle file uploads and make predictions using Custom Vision model API
 app.post('/upload', upload.single('file'), async (req, res) => {
     try {
         if (!req.file) {
