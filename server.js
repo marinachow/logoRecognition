@@ -2,8 +2,9 @@
 const express = require('express');
 const multer = require('multer');
 const fetch = require('cross-fetch');
+const path = require('path');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Set up Multer for handling file uploads
 const upload = multer({ 
@@ -36,8 +37,8 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     }
 });
   
-  // Function to make predictions using Custom Vision model API
-  async function makePrediction(image) {
+// Function to make predictions using Custom Vision model API
+async function makePrediction(image) {
     // Make HTTP request to the Custom Vision model API endpoint
     const endpoint = 'https://customvision5daychallengeinstance-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/29e1042a-764a-4c93-b039-8875fad7677d/detect/iterations/Iteration5/image';
     const predictionKey = '9667662d85434019bbc8b7306a6180fa';
@@ -63,7 +64,12 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     const sentence = `The image contains ${highestPrediction.tagName}'s logo with a probability of ${probabilityPercentage}%.`;
 
     return sentence;
-  }  
+}  
+
+// Define a route to serve the index.html file
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Start the server
 app.listen(port, () => {
