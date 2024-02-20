@@ -6,18 +6,12 @@ on:
       - main  # Change this to your main branch name
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install  # Or yarn install if you use yarn
-
-      - name: Build project
-        run: npm run build  # Adjust the command based on your project setup
 
       - name: Deploy to Netlify
         uses: netlify/actions/cli@master
